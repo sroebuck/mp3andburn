@@ -1,6 +1,6 @@
 organization := "com.proinnovate"
 
-name := "template-project"
+name := "javafx-trial"
 
 version := "0.1.0-SNAPSHOT"
 
@@ -13,6 +13,9 @@ libraryDependencies ++= Seq(
   "org.scalatest" % "scalatest_2.10.0" % "1.8" % "test"
 )
 
+unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/jfxrt.jar"))
+
+fork in run := true
 
 // ls-sbt configuration
 // --------------------
