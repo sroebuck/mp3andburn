@@ -10,47 +10,85 @@
 
 <AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="272.0" minWidth="600.0" prefHeight="330.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.proinnovate.HelloWorld">
   <children>
-    <GridPane alignment="CENTER_RIGHT" prefWidth="572.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="162.0">
-      <children>
-        <Label text="Title of talk" GridPane.columnIndex="0" GridPane.rowIndex="0">
-          <GridPane.margin>
-            <Insets right="10.0" fx:id="x1" />
-          </GridPane.margin>
-        </Label>
-        <Label text="Author" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
-        <Label text="Series" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="2" />
-        <Label text="Main Bible reference" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
-        <TextField fx:id="titleField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <TextField fx:id="authorField" prefWidth="200.0" text="Malcolm Round" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <TextField fx:id="seriesField" prefWidth="200.0" promptText="Leave blank if series name too long to fit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextField fx:id="commentField" prefWidth="200.0" promptText="Leave blank if no reference given" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      </children>
-      <columnConstraints>
-        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="157.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" prefWidth="415.0" />
-      </columnConstraints>
-      <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      </rowConstraints>
-    </GridPane>
-    <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="10.0" prefHeight="-1.0" prefWidth="-1.0" rowValignment="BOTTOM" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
-      <children>
-        <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" text="Cancel" />
-        <Button fx:id="burnButton" defaultButton="true" mnemonicParsing="false" text="Burn" />
-      </children>
-    </FlowPane>
     <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mp3 and burn">
       <font>
         <Font name="Arial" size="36.0" />
       </font>
     </Text>
-    <Label prefHeight="-1.0" prefWidth="565.0" text="Please fill out the following questions before the service so that the burning process can complete quickly once the recording is available." wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="101.0">
-      <font>
-        <Font name="Arial" size="14.0" />
-      </font>
-    </Label>
+    <StackPane fx:id="stackPane" prefHeight="260.0" prefWidth="600.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+      <children>
+        <Pane fx:id="pane1" prefHeight="200.0" prefWidth="200.0" visible="true">
+          <children>
+            <GridPane alignment="CENTER_RIGHT" layoutX="14.0" layoutY="92.0" prefWidth="572.0">
+              <children>
+                <Label text="Title of talk" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <GridPane.margin>
+                    <Insets right="10.0" fx:id="x1" />
+                  </GridPane.margin>
+                </Label>
+                <Label text="Author" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
+                <Label text="Series" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="2" />
+                <Label text="Main Bible reference" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
+                <TextField fx:id="titleField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="authorField" prefWidth="200.0" text="Malcolm Round" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="seriesField" prefWidth="200.0" promptText="Leave blank if series name too long to fit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="commentField" prefWidth="200.0" promptText="Leave blank if no reference given" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="157.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" prefWidth="415.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="10.0" layoutX="186.0" layoutY="225.0" prefHeight="-1.0" prefWidth="-1.0" rowValignment="BOTTOM">
+              <children>
+                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" text="Cancel" />
+                <Button fx:id="burnButton" defaultButton="true" mnemonicParsing="false" text="Burn" />
+              </children>
+            </FlowPane>
+            <Label layoutX="14.0" layoutY="31.0" prefHeight="-1.0" prefWidth="565.0" text="Please fill out the following questions before the service so that the burning process can complete quickly once the recording is available." wrapText="true">
+              <font>
+                <Font name="Arial" size="14.0" />
+              </font>
+            </Label>
+          </children>
+        </Pane>
+        <Pane fx:id="pane2" prefHeight="200.0" prefWidth="200.0" visible="false">
+          <children>
+            <GridPane alignment="CENTER_RIGHT" layoutX="28.0" layoutY="0.0" prefHeight="246.0" prefWidth="452.0">
+              <children>
+                <Label alignment="CENTER_RIGHT" contentDisplay="LEFT" text="Normalise volume of recording" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <GridPane.margin>
+                    <Insets bottom="20.0" right="10.0" fx:id="x2" />
+                  </GridPane.margin>
+                </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="LEFT" text="Split recording into 2 minute tracks for Audio CD" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="1" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="LEFT" text="Burn the Audio CD" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="2" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="LEFT" text="Convert recording into mono MP3 with ID3 tags for web site" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="3" />
+                <ProgressIndicator fx:id="normaliseProgress" progress="0.0" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <ProgressIndicator fx:id="splitProgress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ProgressIndicator fx:id="burnProgress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <ProgressIndicator fx:id="mp3Progress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="413.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="53.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </children>
+        </Pane>
+      </children>
+    </StackPane>
   </children>
 </AnchorPane>

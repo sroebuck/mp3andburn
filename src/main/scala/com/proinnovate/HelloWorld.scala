@@ -5,10 +5,13 @@ import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
-import javafx.scene.control.{TextField, Button}
+import javafx.scene.control.{ProgressIndicator, TextField, Button}
 import com.typesafe.scalalogging.slf4j.Logging
-import javafx.event.EventHandler
+import javafx.event.{ActionEvent, EventHandler}
 import javafx.scene.input.KeyEvent
+import javafx.scene.layout.Pane
+import concurrent.Future
+import concurrent.ExecutionContext.Implicits.global
 
 object HelloWorld {
 
@@ -38,10 +41,10 @@ class HelloWorld extends Application with Logging {
     val burnButton:Button = root.lookup("#burnButton").asInstanceOf[Button]
     burnButton.setDisable(true)
 
-    val titleField:TextField = root.lookup("#titleField").asInstanceOf[TextField]
-    val authorField:TextField = root.lookup("#authorField").asInstanceOf[TextField]
-    val seriesField:TextField = root.lookup("#seriesField").asInstanceOf[TextField]
-    val commentField:TextField = root.lookup("#commentField").asInstanceOf[TextField]
+    val titleField = root.lookup("#titleField").asInstanceOf[TextField]
+    val authorField = root.lookup("#authorField").asInstanceOf[TextField]
+    val seriesField = root.lookup("#seriesField").asInstanceOf[TextField]
+    val commentField = root.lookup("#commentField").asInstanceOf[TextField]
 
     val seriesPrefix = "St Mungo's"
 
@@ -57,9 +60,30 @@ class HelloWorld extends Application with Logging {
         else burnButton.setDisable(true)
       }
     }
-
     Seq(titleField, authorField).map(_.addEventHandler(KeyEvent.KEY_TYPED, burnButtonEnablingEventHandler))
 
+    setupBurnButtonHandler(root, burnButton)
+
+    // Connect progress displays with workers
+    val normaliseProgress = root.lookup("#normaliseProgress").asInstanceOf[ProgressIndicator]
+    val splitProgress = root.lookup("#splitProgress").asInstanceOf[ProgressIndicator]
+    val burnProgress = root.lookup("#burnProgress").asInstanceOf[ProgressIndicator]
+    val mp3Progress = root.lookup("#mp3Progress").asInstanceOf[ProgressIndicator]
+    Normalize.progress.bindBidirectional(normaliseProgress.progressProperty)
+
+  }
+
+  private def setupBurnButtonHandler(root: Parent, burnButton: Button) {
+    burnButton.setOnAction(new EventHandler[ActionEvent]() {
+      def handle(actionEvent: ActionEvent) {
+
+        val pane1 = root.lookup("#pane1").asInstanceOf[Pane]
+        val pane2 = root.lookup("#pane2").asInstanceOf[Pane]
+        pane1.setVisible(false)
+        pane2.setVisible(true)
+        Future(PrepareMp3.prepareMp3())
+      }
+    })
   }
 
   private def setMaxFieldLength(field: TextField, length: Int) {
