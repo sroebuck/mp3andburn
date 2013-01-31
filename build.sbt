@@ -10,7 +10,11 @@ scalaVersion := "2.10.0"
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-Xcheckinit", "-Xmigration", "-encoding", "UTF-8")
 
 libraryDependencies ++= Seq(
-  "org.scalatest" % "scalatest_2.10.0" % "1.8" % "test"
+  "org.scalatest" % "scalatest_2.10.0" % "1.8" % "test",
+    // Logging...
+    "com.typesafe" %% "scalalogging-slf4j" % "1.0.1",
+    "ch.qos.logback" % "logback-classic" % "1.0.6",
+    "org.slf4j" % "slf4j-api" % "1.7.2"
 )
 
 unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/jfxrt.jar"))
@@ -84,3 +88,10 @@ seq(ScctPlugin.instrumentSettings : _*)
 // Setting for jacoco4sbt - Code coverage tool
 
 seq(jacoco.settings : _*)
+
+// ------------------------------------------------------------------------------------------------------------
+// Setting for sbt-assembly
+
+assemblySettings
+
+
