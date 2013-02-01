@@ -35,6 +35,7 @@ object SplitRecordingIntoTracks extends Logging {
     }
 
     def err(s: => String) {
+      logger.debug(s)
       try {
         val ProgressRE(p) = s
         progress.set(p.toDouble / 100.0)

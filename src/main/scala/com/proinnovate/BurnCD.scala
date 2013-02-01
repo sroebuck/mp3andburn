@@ -17,11 +17,14 @@ object BurnCD extends Logging {
   def burn(sourceDir: File): Boolean = {
     val files = sourceDir.listFiles.sortBy(_.getName).map(_.getAbsolutePath)
     tracks = files.length
-    // FIXME: Dummy run
-    val commandLine = Seq("cdrecord", "-dummy", "-dao", "-audio", "-pad", "-eject") ++ files
-    logger.warn(s"command = $commandLine")
+    val command = "cdrecord"
+    val mainParams = Seq("-dao", "-audio", "-pad", "-eject")
+    // Add in the "-dummy" parameter if we have the "burn.forreal" config set to false.
+    val commandLine = Config.burnForReal match {
+      case true => Seq(command) ++ mainParams ++ files
+      case false => Seq(command, "-dummy") ++ mainParams ++ files
+    }
     val burn = Process(commandLine)
-    logger.warn("set burn")
     progress.set(0.05)
     val success = burn.!(ProgressLogger) == 0
     progress.set(1.0)
@@ -38,6 +41,7 @@ object BurnCD extends Logging {
     val ProgressRE = """Track\s(\d+):.+""".r
 
     def out(s: => String) {
+      logger.debug(s)
       try {
         val ProgressRE(p) = s
         progress.set(p.toInt / (tracks + 1.0))
@@ -47,7 +51,7 @@ object BurnCD extends Logging {
     }
 
     def err(s: => String) {
-      logger.warn(s)
+      logger.debug(s)
     }
 
     def buffer[T](f: => T): T = f

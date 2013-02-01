@@ -39,6 +39,7 @@ object Normalize extends Logging {
     }
 
     def err(s: => String) {
+      logger.debug(s)
       try {
         val ProgressRE(p) = s
         progress.set(p.toInt / 100.0)

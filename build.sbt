@@ -14,8 +14,12 @@ libraryDependencies ++= Seq(
     // Logging...
     "com.typesafe" %% "scalalogging-slf4j" % "1.0.1",
     "ch.qos.logback" % "logback-classic" % "1.0.6",
-    "org.slf4j" % "slf4j-api" % "1.7.2"
-)
+    "org.slf4j" % "slf4j-api" % "1.7.2",
+    "com.typesafe" % "config" % "1.0.0",
+    // Date Library
+    "joda-time" % "joda-time" % "2.1",
+    "org.joda" % "joda-convert" % "1.2"
+  )
 
 unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/jfxrt.jar"))
 
