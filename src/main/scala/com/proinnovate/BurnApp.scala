@@ -13,16 +13,16 @@ import javafx.scene.layout.Pane
 import concurrent.Future
 import concurrent.ExecutionContext.Implicits.global
 
-object HelloWorld {
+object BurnApp {
 
   def main(args: Array[String]) {
-    Application.launch(classOf[HelloWorld], args: _*)
+    Application.launch(classOf[BurnApp], args: _*)
   }
 
 }
 
 
-class HelloWorld extends Application with Logging {
+class BurnApp extends Application with Logging {
 
   def start(stage: Stage) {
     // Text.fontSmoothingType(FontSmoothingType.LCD) - I think this requires JavaFX2.2
@@ -69,7 +69,8 @@ class HelloWorld extends Application with Logging {
     val splitProgress = root.lookup("#splitProgress").asInstanceOf[ProgressIndicator]
     val burnProgress = root.lookup("#burnProgress").asInstanceOf[ProgressIndicator]
     val mp3Progress = root.lookup("#mp3Progress").asInstanceOf[ProgressIndicator]
-    Normalize.progress.bindBidirectional(normaliseProgress.progressProperty)
+    normaliseProgress.progressProperty.bind(Normalize.progress)
+    splitProgress.progressProperty.bind(SplitRecordingIntoTracks.progress)
 
   }
 

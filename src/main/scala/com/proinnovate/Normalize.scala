@@ -15,16 +15,17 @@ object Normalize extends Logging {
 
   val progress = new SimpleDoubleProperty(0)
 
-  def normalise(inputFile: File, outputFile: File) {
-
+  def normalise(inputFile: File, outputFile: File): Option[File] = {
     val copy = Process(Seq("cp", inputFile.getAbsolutePath, outputFile.getAbsolutePath))
     val normalize = Process(Seq("normalize", outputFile.getAbsolutePath))
-
-    (copy #&& normalize).!(ProgressLogger)
+    (copy #&& normalize).!(ProgressLogger) match {
+      case 0 => Some(outputFile)
+      case _ => None
+    }
 
   }
 
-  object ProgressLogger extends ProcessLogger {
+  private object ProgressLogger extends ProcessLogger {
 
     /**
      * Regular express to extract progress information from output written to StdErr of the form:

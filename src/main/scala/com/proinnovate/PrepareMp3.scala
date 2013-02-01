@@ -14,18 +14,16 @@ object PrepareMp3 extends Logging {
 
     val inputDir = new File("/Volumes/NO NAME/YPE/SONGS")
     val outputFile = new File("/Users/sroebuck/Desktop/file.mp3")
+    val splitTrackDir = new File("/Users/sroebuck/Desktop/audiocd")
 
     val files = inputDir.listFiles
 
-    files.sortWith{ case (x: File,y: File) => x.lastModified > y.lastModified }.headOption match {
-      case Some(latestFile) =>
-        logger.warn(s"latestFile = $latestFile")
-
-        Normalize.normalise(latestFile, outputFile)
-      case None =>
-        logger.warn("No file found to normalize!")
-    }
-
+    val latestFileOpt = files.sortWith{ case (x: File,y: File) => x.lastModified > y.lastModified }.headOption
+    for {
+      latestFile <- latestFileOpt
+      normFile <- Normalize.normalise(latestFile, outputFile)
+      splitFile <- SplitRecordingIntoTracks.splitRecording(normFile, splitTrackDir)
+    } {}
 
 
   }

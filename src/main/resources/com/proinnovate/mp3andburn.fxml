@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="272.0" minWidth="600.0" prefHeight="330.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.proinnovate.HelloWorld">
+<AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="272.0" minWidth="600.0" prefHeight="330.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.proinnovate.BurnApp">
   <children>
     <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mp3 and burn">
       <font>
@@ -71,8 +71,8 @@
                 <Label alignment="CENTER_RIGHT" contentDisplay="LEFT" text="Burn the Audio CD" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="2" />
                 <Label alignment="CENTER_RIGHT" contentDisplay="LEFT" text="Convert recording into mono MP3 with ID3 tags for web site" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="3" />
                 <ProgressIndicator fx:id="normaliseProgress" progress="0.0" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <ProgressIndicator fx:id="splitProgress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <ProgressIndicator fx:id="burnProgress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <ProgressIndicator fx:id="splitProgress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <ProgressIndicator fx:id="burnProgress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <ProgressIndicator fx:id="mp3Progress" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
               </children>
               <columnConstraints>
