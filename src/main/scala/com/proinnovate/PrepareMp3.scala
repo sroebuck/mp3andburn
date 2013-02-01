@@ -9,9 +9,6 @@ import com.typesafe.scalalogging.slf4j.Logging
 object PrepareMp3 extends Logging {
 
   def prepareMp3() {
-
-    logger.warn("--> prepareMp3")
-
     val inputDir = new File("/Volumes/NO NAME/YPE/SONGS")
     val outputFile = new File("/Users/sroebuck/Desktop/file.mp3")
     val splitTrackDir = new File("/Users/sroebuck/Desktop/audiocd")
@@ -22,8 +19,8 @@ object PrepareMp3 extends Logging {
     for {
       latestFile <- latestFileOpt
       normFile <- Normalize.normalise(latestFile, outputFile)
-      splitFile <- SplitRecordingIntoTracks.splitRecording(normFile, splitTrackDir)
-    } {}
+      splitDir <- SplitRecordingIntoTracks.splitRecording(normFile, splitTrackDir)
+    } BurnCD.burn(splitDir)
 
 
   }

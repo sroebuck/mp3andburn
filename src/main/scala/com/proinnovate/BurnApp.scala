@@ -71,6 +71,7 @@ class BurnApp extends Application with Logging {
     val mp3Progress = root.lookup("#mp3Progress").asInstanceOf[ProgressIndicator]
     normaliseProgress.progressProperty.bind(Normalize.progress)
     splitProgress.progressProperty.bind(SplitRecordingIntoTracks.progress)
+    burnProgress.progressProperty.bind(BurnCD.progress)
 
   }
 
