@@ -11,7 +11,7 @@ Prerequisites
 * The software relies on a number of command line tools having been already installed on the machine.  These carry out the actual audio processing and CD recording work.  This software simply provides a convenient interface for entering ID tags, controlling and displaying feedback on the ongoing process.
 * The command line tools are: [cdrecord](http://cdrecord.berlios.de/private/cdrecord.html), [normalize](http://normalize.nongnu.org/), [lame](http://lame.sourceforge.net/) and [sox](http://sox.sourceforge.net/).  These were installed using Homebrew and the command:
 
-    brew install cdrtools normalize lame sox
+        brew install cdrtools normalize lame sox
 
 ---
 
