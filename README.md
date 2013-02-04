@@ -1,43 +1,19 @@
-Scala Project Template
-======================
+mp3andburn
+==========
 
-This is a template project for open-source Scala projects.  It's intended to reduce the overheads of publishing some useful code to the community as a library.  The idea is that you just copy this project and then make it your own.
-
-It provides (or goes some way to providing, or will provide!):
-
-* publishing process control using [sbt-release](https://github.com/gseitz/sbt-release) which simplifies updating release versions but also provides some checks to make sure your release is suitable for publishing.
-* publishing to [ls.implicit.ly](http://ls.implicit.ly/) using [ls-sbt](https://github.com/softprops/ls) to make it easier for others to find your library.
-* publishing to [implicit.ly](http://implicit.ly/) using [posterous-sbt](https://github.com/n8han/posterous-sbt) for those who like to following the latest Scala library releases.
-* deployment to the Sonatype Maven repository.
-
-Version: 0.2-SNAPSHOT
-
-This code is currently under development.
-
-This template is not complete and I have yet to document what you need to change to make this work for you!
+A Java application written for a very specific purpose of burning a CD and converting and tagging an MP3 for distribution after a church service in one particular church.  The code does not attempt to generalise to other uses but may provide a useful basis for forking an alternative version.
 
 Prerequisites
 -------------
 
-To deploy a project to the Sonatype Maven repository you are best reading [this explanation](http://www.cakesolutions.net/teamblogs/2012/01/28/publishing-sbt-projects-to-nexus/) which explains that you need to set up your credentials in a file such as `~/.sbt/sonatype.sbt`, looking like:
+* The software is designed to be run on a Macintosh (it makes assumptions, for example, as to where log files should be written that are Mac specific.)
+* The software assumes Java 7 for it's built in support for JavaFX 2.  The software is written in Scala.
+* The software relies on a number of command line tools having been already installed on the machine.  These carry out the actual audio processing and CD recording work.  This software simply provides a convenient interface for entering ID tags, controlling and displaying feedback on the ongoing process.
+* The command line tools are: [cdrecord](http://cdrecord.berlios.de/private/cdrecord.html), [normalize](http://normalize.nongnu.org/), [lame](http://lame.sourceforge.net/) and [sox](http://sox.sourceforge.net/).  These were installed using Homebrew and the command:
 
-    credentials += Credentials("Sonatype Nexus Repository Manager",
-                               "oss.sonatype.org",
-                               "username",
-                               "password")
+    brew install cdrtools normalize lame sox
 
-Building and installing
------------------------
+---
 
-
-Using
------
-
-
-License
--------
-
-This software is Copyright (c) 2011, Stuart Roebuck and licensed under a
-standard MIT license (more specifically referred to as the Expat license). See
-the `LICENSE.md` file for details.
+This software is Copyright (c) 2011, Stuart Roebuck and licensed under the very open MIT license (more specifically referred to as the Expat license). See the `LICENSE.md` file for details.
 
