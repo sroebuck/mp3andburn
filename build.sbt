@@ -1,6 +1,6 @@
 organization := "com.proinnovate"
 
-name := "javafx-trial"
+name := "mp3andburn"
 
 version := "0.1.0-SNAPSHOT"
 

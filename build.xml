@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ButtonDemo" default="bundle-mp3andburn" basedir=".">        
+    <!-- <import file="nbproject/build-impl.xml"/> -->
+
+	<property environment="env" />
+
+    <taskdef name="bundleapp"
+             classname="com.oracle.appbundler.AppBundlerTask"   
+             classpath="tools/appbundler-1.0.jar" />
+
+    <target name="bundle-mp3andburn">
+        <bundleapp outputdirectory="target"
+            name="mp3andburn"
+            displayname="MP3 and Burn"
+            identifier="com.proinnovate.mp3andburn"
+            mainclassname="com.proinnovate.Start">
+			<runtime dir="${env.JAVA_HOME}" />
+            <classpath file="target/mp3andburn-assembly-0.1.0-SNAPSHOT.jar" />
+            <option value="-Dfile.encoding=UTF-8" />
+            <option value="-Dsun.jnu.encoding=UTF-8" />
+            <option value="-Dawt.tookit=sun.awt.HToolkit" />
+        </bundleapp>
+    </target>
+
+</project>

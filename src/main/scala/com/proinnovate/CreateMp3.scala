@@ -13,14 +13,14 @@ object CreateMp3 extends Logging {
                  year: String, comment: String): Option[File] = {
     val commandLine = Seq("lame", "-af", "--tt", title, "--ta", author, "--tl", album, "--ty", year, "--tc", comment,
       "--tg", "Speech", sourceFile.getAbsolutePath, outputFile.getAbsolutePath)
-    Process(commandLine).!(ProgressLogger) match {
+    Process(commandLine).!(ThisLogger) match {
       case 0 => Some(outputFile)
       case _ => None
     }
 
   }
 
-  private object ProgressLogger extends ProcessLogger {
+  private object ThisLogger extends ProcessLogger {
 
     /**
      * Regular express to extract progress information from output written to StdErr of the form:

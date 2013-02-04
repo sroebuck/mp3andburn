@@ -26,12 +26,12 @@ object BurnCD extends Logging {
     }
     val burn = Process(commandLine)
     progress.set(0.05)
-    val success = burn.!(ProgressLogger) == 0
+    val success = burn.!(ThisLogger) == 0
     progress.set(1.0)
     success
   }
 
-  private object ProgressLogger extends ProcessLogger {
+  private object ThisLogger extends ProcessLogger {
 
     /**
      * Regular express to extract progress information from output written to StdErr of the form:

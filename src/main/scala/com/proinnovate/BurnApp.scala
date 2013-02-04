@@ -16,13 +16,6 @@ import java.io.File
 import org.joda.time.{LocalDateTime, LocalDate}
 import util.Try
 
-object BurnApp {
-
-  def main(args: Array[String]) {
-    Application.launch(classOf[BurnApp], args: _*)
-  }
-
-}
 
 
 class BurnApp extends Application with Logging {
@@ -115,12 +108,14 @@ class BurnApp extends Application with Logging {
   private def prepareMp3(title: String, author: String, album: String, year: String, comment: String): Future[Boolean] = {
     // FIXME: Find the SONGS directory by checking all potential volumes from an appropriately named file.
     val inputDir = new File("/Volumes/NO NAME/YPE/SONGS")
-    val outputFile = new File("/Users/sroebuck/Desktop/file.mp3")
-    val splitTrackDir = new File("/Users/sroebuck/Desktop/audiocd")
+    val outputFile = new File(Config.userHome, "Desktop/file.mp3")
+    val splitTrackDir = new File(Config.userHome, "Desktop/audiocd")
 
     val files = inputDir.listFiles
+    logger.info(s"files = ${files.mkString(",")}")
 
     val latestFileOpt = files.sortWith{ case (x: File,y: File) => x.lastModified > y.lastModified }.headOption
+    logger.info(s"latestFileOpt = $latestFileOpt")
     val finalMp3File = latestFileOpt.map {
       latestFile: File =>
         val modifiedDate = new LocalDateTime(latestFileOpt.get.lastModified)
@@ -132,6 +127,7 @@ class BurnApp extends Application with Logging {
         val fullname = s"$year-$month-$date-$ampm.mp3"
         new File(Config.userHome, "Desktop/" + fullname)
     }.getOrElse(new File(Config.userHome, "Desktop/today.mp3"))
+    logger.info(s"finalMp3File = $finalMp3File")
     val normFileFuture = Future { latestFileOpt.flatMap(Normalize.normalise(_, outputFile)) }
     val splitDirFuture = normFileFuture.map(_.flatMap(SplitRecordingIntoTracks.splitRecording(_, splitTrackDir)))
     val burnCdOkayFuture = splitDirFuture.map(_.map {

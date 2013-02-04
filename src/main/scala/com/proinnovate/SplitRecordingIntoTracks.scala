@@ -16,13 +16,13 @@ object SplitRecordingIntoTracks extends Logging {
     val mkdir = Process(Seq("mkdir", outputDir.getAbsolutePath))
     val split = Process(Seq("sox", "-S", "-V1", inputFile.getAbsolutePath, outputDir.getAbsolutePath + "/TRACK.wav",
     "trim", "0", trackSizeSeconds.toString, ":", "newfile", ":", "restart"))
-    (mkdir #&& split).!(ProgressLogger) match {
+    (mkdir #&& split).!(ThisLogger) match {
       case 0 => Some(outputDir)
       case _ => None
     }
   }
 
-  private object ProgressLogger extends ProcessLogger {
+  private object ThisLogger extends ProcessLogger {
 
     /**
      * Regular express to extract progress information from output written to StdErr of the form:
